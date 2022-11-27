@@ -13,12 +13,11 @@ function UserSearch(){
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        
-        if(text===''){
+
+        if (text === ''){
             setAlert('Please enter something', 'error')
-        }
-        else{
-     searchUsers(text)
+        } else {
+          searchUsers(text)
         }
     }
 
@@ -34,10 +33,10 @@ function UserSearch(){
                         value={text}
                         onChange={handleChange}
                         />
-                        <button 
+                        <button
                         type='submit'
                         className="absolute top-0 right-0 rounder-l-none w-36 btn btn-lg">
-                            Go   
+                            Go
                         </button>
                     </div>
 
@@ -55,4 +54,4 @@ function UserSearch(){
     )
 }
 
-export default UserSearch 
+export default UserSearch
