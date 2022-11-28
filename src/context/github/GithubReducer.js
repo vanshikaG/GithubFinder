@@ -1,21 +1,26 @@
-import { Action } from "@remix-run/router";
+//import { Action } from "@remix-run/router";
 
-const { useActionData } = require("react-router-dom");
+//const { useActionData } = require("react-router-dom");
 
 const githubReducer =(state, action) => {
-    switch (Action.type){
+    switch (action.type){
         case 'GET_USERS':
-        return{
-            ...state,
-            users: Action.payload,
-            loading: false, 
-        }
-        case 'GET_USER':
             return{
                 ...state,
-                user:action.payload,
-                loading:false
+                users: action.payload,
+                repos: action.payload,
+                loading: false, 
             }
+            
+
+        case 'GET_USERS_AND_REPOS':
+        return{
+            ...state,
+            users: action.payload.user,
+            repos: action.payload.repos,
+            loading: false, 
+        }
+        
         case 'SET_LOADING':
             return {
                 ...state, 
@@ -25,9 +30,8 @@ const githubReducer =(state, action) => {
         case 'CLEAR_USERS':
             return {
                 ...state,
-                users: [],
+                users:[],
             }
-
 
         default:
             return state

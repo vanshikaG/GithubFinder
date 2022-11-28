@@ -3,19 +3,23 @@ import {useEffect, useContext} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import Spinner from '../components/layout/Spinner'
 import GithubContext from '../context/github/GithubContext'
+import {getUserAndRepos} from '../context/github/GithubActions'
 
 
 
 function User() {
-    const {getUser, user, loading, getUserRepos} = useContext (GithubContext)
+    const {user, loading,repos, dispatch} = useContext (GithubContext)
 
     const params = useParams()
 
     useEffect(()=>{
-        getUser(params.login)
-        getUserRepos(params.login)
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+        dispatch({type:'SET_LOADING'})
+        const getUserData = async() => {
+            const userData = await getUserAndRepos(params.login)
+            dispatch({type:'GET_USER_AND_REPOS', payload: userData})
+        }
+       getUserData()
+    },[dispatch,params.login])
 
     const{
         name,
@@ -39,6 +43,7 @@ function User() {
         return <Spinner/>
     }
 
+    const websiteUrl = blog?.startsWith('http') ? blog : 'https://' + blog
 
     return <>
         <div className="w-full mx-auto lg:w-10/12">
@@ -57,7 +62,7 @@ function User() {
                             <h2 className="card-title mb-0">
                                 {name}
                             </h2>
-                            <p>
+                            <p className="flex-grow-0">
                                 {login}
                             </p>
                         </div>
@@ -76,7 +81,12 @@ function User() {
                         </h1>
                         <p>{bio}</p>
                         <div className="mt-4 card-actions">
-                            <a href={html_url} target='_blank' rel='noreferrer' className='btn btn-outline'>
+                            <a 
+                            href={html_url} 
+                            target='_blank' 
+                            rel='noreferrer' 
+                            className='btn btn-outline'
+                            >
                                 Visit Github Profile
                             </a>
                         </div>
@@ -93,7 +103,7 @@ function User() {
                             <div className="stat">
                                 <div className="stat-title text-md">Website</div>
                             <div className="text-lg stat-value">
-                                <a href={`https://${blog}`} 
+                                <a href={websiteUrl}
                                 target="_blank" 
                                 rel='noreferrer'> {blog} </a>
                             </div>
@@ -115,6 +125,7 @@ function User() {
                 </div>
             </div>
             <div className="w-full py-5 mb-6 rounded lg shadow-md bg-base-100 stats">
+                <div className='grid frid-cols-1 md:grid-cols-3'>
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                         <FaUsers className='text-3xl md:text-5xl'/>
@@ -125,8 +136,8 @@ function User() {
                     <div className="stat-value pr-5 text-3xl md:text-4xl">
                         {followers}
                     </div>
+                
                 </div>
-
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                         <FaUserFriends className='text-3xl md:text-5xl'/>
@@ -162,8 +173,9 @@ function User() {
                         {public_gists}
                     </div>
                 </div>
-
             </div>
+            </div>
+            
         </div>
     </>
 }

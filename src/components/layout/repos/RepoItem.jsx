@@ -13,7 +13,7 @@ function RepoItem({repo}){
     } = repo
     
     return
-        <div className='mb-2 rounded-md card bg-gray-800 hover:bg-gray-900'>
+        <div className='mb-2 rounded-md card bg-gray-200 hover:bg-gray-300'>
             <div className="card-body">
                 <h3 className="mb-2 text-xl font-semi-bold">
                     <a href={html_url}>
@@ -34,7 +34,6 @@ function RepoItem({repo}){
                     <div className="mr-2 badge badge-warning badge-lg">
                         <FaUtensils className='mr-2'/>{forks}
                     </div>
-
                 </div>
             </div>
         </div>    
@@ -44,8 +43,5 @@ RepoItem.propTypes ={
     repo: PropTypes.object.isRequired,
 }
 
-/*RepoList.propTypes ={
-    repos:PropTypes.array.isRequired, 
-} */
 
 export default RepoItem

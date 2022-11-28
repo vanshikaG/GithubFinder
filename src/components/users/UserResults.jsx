@@ -14,8 +14,9 @@ function UserResults(){
           </div>
         )
     }
-
+    else{
     return <Spinner />
+    }
 }
 
 export default UserResults
