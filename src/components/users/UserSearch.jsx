@@ -18,10 +18,10 @@ function UserSearch(){
         if (text === ''){
             setAlert('Please enter something', 'error')
         } else {
-            dispatchEvent({type:'SET_LOADING'})
-          const users = await searchUsers(text)
-          dispatchEvent({type: 'GET_USERS', payload: users})
-        
+            dispatch({type:'SET_LOADING'})
+            const users = await searchUsers(text)
+            dispatch({type: 'GET_USERS', payload: users})
+
             setText('')
         }
     }
@@ -32,7 +32,7 @@ function UserSearch(){
             <form onSubmit={handleSubmit}>
                 <div className="form-control">
                     <div className="relative">
-                        <input 
+                        <input
                         type='text'
                         className="w-full pr-40 bg-gray-200 input input-lg text-black"
                         placeholder='Search'
