@@ -5,11 +5,9 @@ function Home(){
     return(
         <>
             <UserSearch/>
-           <UserResults/>
-          
-            
+            <UserResults/>
         </>
     )
 }
 
-export default Home 
+export default Home
