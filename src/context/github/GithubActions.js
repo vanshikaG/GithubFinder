@@ -11,6 +11,7 @@ const github = axios.create({
 export const searchUsers = async (text) => {
   const params = new URLSearchParams({
     q: text,
+    per_page: 1,
   })
 
   const response = await github.get(`/search/users?${params}`)

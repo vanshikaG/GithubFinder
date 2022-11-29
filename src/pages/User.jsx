@@ -8,7 +8,7 @@ import {getUserAndRepos} from '../context/github/GithubActions'
 
 
 function User() {
-    const {user, loading,repos, dispatch} = useContext (GithubContext)
+    const {user, loading,repos, dispatch} = useContext(GithubContext)
 
     const params = useParams()
 

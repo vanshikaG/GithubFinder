@@ -29,7 +29,7 @@ function App() {
                   }
                 />
                 <Route path='/about' element={<About />} />
-               <Route path='/user/:login' component={User}/>
+                <Route path='/user/:login' element={<User />} />
                 <Route path='/notfound' element={<NotFound />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
