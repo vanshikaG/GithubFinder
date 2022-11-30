@@ -1,5 +1,5 @@
-import {FaEye,FaInfo, FaLink, FaStar, FaUtensils} from 'react-icons/fa'
-import PropTypes from 'prop=types'
+import {FaEye, FaInfo, FaLink, FaStar, FaUtensils} from 'react-icons/fa'
+import PropTypes from 'prop-types'
 
 function RepoItem({repo}){
     const {
@@ -12,7 +12,7 @@ function RepoItem({repo}){
         stargazers_count,
     } = repo
     
-    return
+    return(
         <div className='mb-2 rounded-md card bg-gray-200 hover:bg-gray-300'>
             <div className="card-body">
                 <h3 className="mb-2 text-xl font-semi-bold">
@@ -36,10 +36,11 @@ function RepoItem({repo}){
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>  
+    )  
 }
 
-RepoItem.propTypes ={
+RepoItem.propTypes = {
     repo: PropTypes.object.isRequired,
 }
 

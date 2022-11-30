@@ -8,7 +8,6 @@ const githubReducer =(state, action) => {
             return{
                 ...state,
                 users: action.payload,
-                repos: action.payload,
                 loading: false, 
             }
             
